@@ -1,9 +1,11 @@
 'use client';
-import './globals.css';
+
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import React from 'react';
+
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +20,7 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+    const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
     const theme = React.useMemo(
         () =>
             createTheme({
@@ -28,6 +30,7 @@ export default function RootLayout({
             }),
         [mode],
     );
+
     const toggleColorMode = () => {
         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
     };
@@ -40,7 +43,17 @@ export default function RootLayout({
         >
             <ThemeProvider theme={theme}>
                 <html lang="en">
-                    <body className={inter.className}>{children}</body>
+                    <body
+                        className={inter.className}
+                        style={{
+                            backgroundColor:
+                                theme.palette.mode === 'dark'
+                                    ? '#2E2B2B'
+                                    : '#E2E8F0',
+                        }}
+                    >
+                        {children}
+                    </body>
                 </html>
             </ThemeProvider>
         </ColorModeContext.Provider>
