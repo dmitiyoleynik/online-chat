@@ -1,7 +1,9 @@
 import { Avatar, Stack, Typography, useTheme } from '@mui/material';
+
 interface Props {
     title?: string;
 }
+
 const AuthCardHeader: React.FC<Props> = ({ title }) => {
     const theme = useTheme();
 

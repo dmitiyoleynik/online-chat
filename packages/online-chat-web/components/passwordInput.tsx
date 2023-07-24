@@ -36,4 +36,5 @@ const PasswordInput: React.FC<TextFieldProps> = props => {
         />
     );
 };
+
 export default PasswordInput;
