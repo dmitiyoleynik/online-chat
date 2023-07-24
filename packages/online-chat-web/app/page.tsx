@@ -5,7 +5,7 @@ import { Box, IconButton, useTheme } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import React from 'react';
-import { ColorModeContext } from './layout';
+import { ColorModeContext } from '@/components/theme';
 
 export default function Home() {
     const { toggleColorMode } = React.useContext(ColorModeContext);
