@@ -19,7 +19,6 @@ const PasswordInput: React.FC<TextFieldProps> = props => {
             type={showPassword ? 'text' : 'password'}
             fullWidth={true}
             size="small"
-            placeholder="Password"
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
