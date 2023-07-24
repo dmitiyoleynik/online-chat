@@ -13,7 +13,7 @@ export const ModeToggler: React.FC = () => {
 
     return (
         <IconButton
-            sx={{ maxWidth: 'fit-content' }}
+            sx={{ maxWidth: 'fit-content', alignSelf: 'flex-end' }}
             onClick={toggleColorMode}
             color="inherit"
         >
