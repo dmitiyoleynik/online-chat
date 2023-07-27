@@ -1,3 +1,4 @@
+'use client';
 import { Avatar, Stack, Typography, useTheme } from '@mui/material';
 
 interface Props {

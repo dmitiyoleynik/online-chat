@@ -1,3 +1,4 @@
+'use client';
 import { Card, Stack, useTheme } from '@mui/material';
 
 interface Props {

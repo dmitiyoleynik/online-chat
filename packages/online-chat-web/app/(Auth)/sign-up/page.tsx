@@ -21,7 +21,10 @@ const SignUp: React.FC = () => {
             }
         >
             <AuthCardHeader title="Welcome" />
-            <EmailInput sx={{ marginBottom: theme.spacing(2) }} />
+            <EmailInput
+                id="sign-up-email"
+                sx={{ marginBottom: theme.spacing(2) }}
+            />
             <TextField
                 fullWidth={true}
                 size="small"
@@ -36,10 +39,12 @@ const SignUp: React.FC = () => {
                 }}
             />
             <PasswordInput
+                id="sign-up-password"
                 placeholder="Password"
                 sx={{ marginBottom: theme.spacing(2) }}
             />
             <PasswordInput
+                id="sign-up-confirm-password"
                 placeholder="Confirm Password"
                 sx={{ marginBottom: theme.spacing(2) }}
             />

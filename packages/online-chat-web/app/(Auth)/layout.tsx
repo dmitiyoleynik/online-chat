@@ -1,5 +1,3 @@
-'use client';
-
 import { ModeToggler } from '@/components/theme';
 import { Stack } from '@mui/material';
 

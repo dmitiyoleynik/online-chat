@@ -1,42 +1,26 @@
-'use client';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/dist/client/components/headers';
+import Logout from './logout';
+import { redirect } from 'next/navigation';
 
-import { Box, IconButton, useTheme } from '@mui/material';
+export default async function Home() {
+    const supabase = createServerComponentClient({
+        cookies,
+    });
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
 
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import React from 'react';
-import { ColorModeContext } from '@/components/theme';
+    // console.log({ user });
 
-export default function Home() {
-    const { toggleColorMode } = React.useContext(ColorModeContext);
-    const theme = useTheme();
+    if (!session) {
+        redirect('/login');
+    }
 
     return (
         <div>
-            <Box
-                sx={{
-                    display: 'flex',
-                    width: '100%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    bgcolor: 'background.default',
-                    color: 'text.primary',
-                    borderRadius: 1,
-                    p: 3,
-                }}
-            >
-                <IconButton
-                    sx={{ ml: 1 }}
-                    onClick={toggleColorMode}
-                    color="inherit"
-                >
-                    {theme.palette.mode === 'dark' ? (
-                        <Brightness7Icon />
-                    ) : (
-                        <Brightness4Icon />
-                    )}
-                </IconButton>
-            </Box>
+            <div>U logged in {session?.user?.email}</div>
+            <Logout></Logout>
         </div>
     );
 }

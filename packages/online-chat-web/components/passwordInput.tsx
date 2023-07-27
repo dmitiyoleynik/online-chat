@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 
 import {
@@ -8,6 +9,7 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import LockIcon from '@mui/icons-material/Lock';
+import inputWithValidation from '@/HOC/inputWithValidation';
 
 const PasswordInput: React.FC<TextFieldProps> = props => {
     const [showPassword, setShowPassword] = useState(false);
@@ -37,4 +39,4 @@ const PasswordInput: React.FC<TextFieldProps> = props => {
     );
 };
 
-export default PasswordInput;
+export default inputWithValidation(PasswordInput);
