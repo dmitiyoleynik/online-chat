@@ -9,6 +9,7 @@ import EmailInput from '@/components/emailInput';
 import generateValidator from '@/utils/validator';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
 import CloseIcon from '@mui/icons-material/Close';
+import ErrorMessage from '@/components/errorMessage';
 
 const RestorePassword: React.FC = () => {
     const supabase = createPagesBrowserClient();
@@ -56,21 +57,9 @@ const RestorePassword: React.FC = () => {
                     <Typography>Check you email</Typography>
                 </>
             )}
-            <Snackbar
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                open={!!errorMessage}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                message={errorMessage}
-                action={
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        onClick={handleClose}
-                    >
-                        <CloseIcon />
-                    </IconButton>
-                }
+            <ErrorMessage
+                closeHandler={handleClose}
+                errorMessage={errorMessage}
             />
         </AuthCard>
     );

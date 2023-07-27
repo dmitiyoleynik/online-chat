@@ -11,8 +11,8 @@ import generateValidator from '@/utils/validator';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
-import { Button, IconButton, Snackbar } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Button } from '@mui/material';
+import ErrorMessage from '@/components/errorMessage';
 
 const Login: React.FC = () => {
     const supabase = createPagesBrowserClient();
@@ -87,21 +87,9 @@ const Login: React.FC = () => {
             <Button onClick={handleSignUp} variant="contained" fullWidth>
                 Login
             </Button>
-            <Snackbar
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                open={!!errorMessage}
-                autoHideDuration={6000}
-                onClose={handleClose}
-                message={errorMessage}
-                action={
-                    <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        onClick={handleClose}
-                    >
-                        <CloseIcon />
-                    </IconButton>
-                }
+            <ErrorMessage
+                errorMessage={errorMessage}
+                closeHandler={handleClose}
             />
         </AuthCard>
     );
