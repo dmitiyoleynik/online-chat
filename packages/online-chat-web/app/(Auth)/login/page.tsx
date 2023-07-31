@@ -1,18 +1,17 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
+import { Button } from '@mui/material';
+
 import EmailInput from '@/components/emailInput';
 import PasswordInput from '@/components/passwordInput';
 import AuthCardHeader from '@/components/authCardHeader';
 import Link from '@/components/link';
 import AuthCard from '@/components/authCard';
-
-import generateValidator from '@/utils/validator';
-
-import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
-import { Button } from '@mui/material';
 import ErrorMessage from '@/components/errorMessage';
+import useValidator from '@/hooks/useValidator';
 
 const Login: React.FC = () => {
     const supabase = createPagesBrowserClient();
@@ -20,9 +19,13 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [emailValidationMessage, setEmailValidationMessage] = useState('');
-
-    const validator = useMemo(() => generateValidator('email'), []);
+    const [emailValidationMessage, validateEmail, resetEmailValidator] =
+        useValidator('email');
+    const [
+        passwordValidationMessage,
+        validatePassword,
+        resetPasswordValidator,
+    ] = useValidator('notEmpty');
 
     const SignUp = async () => {
         const { error } = await supabase.auth.signInWithPassword({
@@ -38,13 +41,7 @@ const Login: React.FC = () => {
     };
 
     const handleSignUp = async () => {
-        const errorMessage = validator(email);
-
-        if (errorMessage) {
-            setEmailValidationMessage(errorMessage);
-        } else {
-            await SignUp();
-        }
+        validateEmail(email) && validatePassword(password) && SignUp();
     };
 
     const handleClose = () => {
@@ -65,14 +62,16 @@ const Login: React.FC = () => {
                 errorMessage={emailValidationMessage}
                 onChange={e => {
                     setEmail(e.target.value);
-                    setEmailValidationMessage('');
+                    emailValidationMessage && resetEmailValidator();
                 }}
                 margin="dense"
             />
             <PasswordInput
                 id="login-password-input"
+                errorMessage={passwordValidationMessage}
                 onChange={e => {
                     setPassword(e.target.value);
+                    passwordValidationMessage && resetPasswordValidator();
                 }}
                 margin="dense"
                 placeholder="Password"
