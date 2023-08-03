@@ -1,4 +1,3 @@
-import { expect, test } from '@jest/globals';
 import { renderHook, act } from '@testing-library/react';
 
 import useValidator from './useValidator';
