@@ -11,8 +11,6 @@ export default async function Home() {
         data: { session },
     } = await supabase.auth.getSession();
 
-    // console.log({ user });
-
     if (!session) {
         redirect('/login');
     }
