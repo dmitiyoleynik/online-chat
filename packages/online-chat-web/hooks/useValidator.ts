@@ -59,10 +59,7 @@ const generateValidator = (validationRulesNames: RuleName[]) => {
 const useValidator = (...validationRulesNames: RuleName[]) => {
     const [validationMessage, setValidationMessage] = useState('');
 
-    const validator = useMemo(
-        () => generateValidator(validationRulesNames),
-        [],
-    );
+    const validator = generateValidator(validationRulesNames);
 
     const validate = (value: string) => {
         const validationMessage = validator(value);
