@@ -25,7 +25,7 @@ const Login: React.FC = () => {
         passwordValidationMessage,
         validatePassword,
         resetPasswordValidator,
-    ] = useValidator('notEmpty');
+    ] = useValidator('notEmpty', 'minLength');
 
     const SignUp = async () => {
         const { error } = await supabase.auth.signInWithPassword({
