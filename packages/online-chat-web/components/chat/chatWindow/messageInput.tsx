@@ -3,7 +3,7 @@ import { makeStyles } from 'tss-react/mui';
 
 const getStyles = makeStyles()(theme => {
     return {
-        root: {
+        search: {
             borderRadius: theme.spacing(2),
             padding: theme.spacing(1.5),
             backgroundColor: theme.palette.primary.main,
@@ -21,7 +21,7 @@ const MessageInput: React.FC = () => {
             variant="standard"
             placeholder="Message"
             size="medium"
-            className={classes.root}
+            className={classes.search}
             InputProps={{
                 disableUnderline: true,
             }}

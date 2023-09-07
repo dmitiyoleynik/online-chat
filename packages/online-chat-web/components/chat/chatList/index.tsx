@@ -1,55 +1,57 @@
 import { Stack } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
+
 import Search from '@/components/chat/chatList/search';
 import Menu from '@/components/chat/chatList/menu';
-import Chat, { mockedChats } from '@/components/chat/chatList/chat';
-import { makeStyles } from 'tss-react/mui';
+import Chat from '@/components/chat/chatList/chat';
+import { mockedChats } from '@/mocks';
 
 const useCss = makeStyles()(theme => {
     return {
-        main: {
+        chatList: { width: '25vw' },
+        body: {
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(1),
+
+            overflowY: 'hidden',
+            scrollbarWidth: 'thin',
+
             '&:hover': {
                 overflowY: 'scroll',
                 marginRight: 0,
             },
+
             '&::-webkit-scrollbar': {
                 width: theme.spacing(1),
-            },
-            '&::-webkit-scrollbar-track': {
-                height: '50px',
             },
 
             '&::-webkit-scrollbar-thumb': {
                 backgroundColor: theme.palette.primary.light,
-                borderRadius: '20px',
-                height: '50px',
+                borderRadius: theme.spacing(1),
             },
+        },
+        header: {
+            flexDirection: 'row',
+            alignItems: 'center',
+
+            marginTop: theme.spacing(0.5),
+            marginBottom: theme.spacing(1),
+            marginLeft: theme.spacing(1),
+            marginRight: theme.spacing(2),
         },
     };
 });
 
 const ChatList: React.FC = () => {
     const { classes } = useCss();
+
     return (
-        <Stack sx={{ width: '25vw' }}>
-            <Stack
-                direction={'row'}
-                alignItems={'center'}
-                sx={{
-                    marginTop: 0.5,
-                    marginBottom: 1,
-                    marginLeft: 1,
-                    marginRight: 2,
-                }}
-            >
+        <Stack className={classes.chatList}>
+            <Stack className={classes.header}>
                 <Menu />
                 <Search />
             </Stack>
-            <Stack
-                marginLeft={1}
-                marginRight={1}
-                className={classes.main}
-                sx={{ overflowY: 'hidden', scrollbarWidth: 'thin' }}
-            >
+            <Stack className={classes.body}>
                 {mockedChats.map(chat => (
                     <Chat key={chat.id} {...chat}></Chat>
                 ))}

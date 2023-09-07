@@ -1,46 +1,56 @@
-import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 
-interface IMessage {
+import { getFormatedTime } from '@/utils';
+
+const useCss = makeStyles<{ isSendByUser: boolean }>()((
+    theme,
+    { isSendByUser },
+) => {
+    const sentColor = isSendByUser
+        ? theme.palette.grey[300] //TODO:???
+        : theme.palette.text.primary;
+    const messageColor = isSendByUser
+        ? theme.palette.secondary.main
+        : theme.palette.primary.light;
+    const align = isSendByUser ? 'end' : 'start';
+
+    return {
+        sent: {
+            paddingTop: theme.spacing(1),
+            color: sentColor,
+            marginLeft: 'auto',
+            fontSize: '0.8rem', //TODO:???
+            bottom: 0,
+        },
+        message: {
+            flexDirection: 'row',
+            gap: theme.spacing(1),
+            alignSelf: align,
+            backgroundColor: messageColor,
+            borderRadius: theme.spacing(1),
+            paddingLeft: theme.spacing(1),
+            paddingRight: theme.spacing(1),
+            paddingTop: theme.spacing(1),
+        },
+    };
+});
+
+interface MessageProps {
     text: string;
     isSendByUser: boolean;
     isRead: boolean;
     sent: Date;
 }
 
-const Message: React.FC<IMessage> = ({ text, isSendByUser, sent }) => {
-    const theme = useTheme();
-    const messageColor = isSendByUser
-        ? theme.palette.secondary.main
-        : theme.palette.primary.light;
-    const timeColor = isSendByUser
-        ? theme.palette.grey[300]
-        : theme.palette.text.primary;
+const Message: React.FC<MessageProps> = ({ text, isSendByUser, sent }) => {
+    const { classes } = useCss({ isSendByUser });
 
     return (
-        <Stack
-            direction={'row'}
-            gap={1}
-            sx={{
-                backgroundColor: messageColor,
-                borderRadius: theme.spacing(1),
-                paddingLeft: theme.spacing(1),
-                paddingRight: theme.spacing(1),
-                paddingTop: theme.spacing(1),
-            }}
-            alignSelf={isSendByUser ? 'end' : 'start'}
-        >
+        <Stack className={classes.message}>
             <Typography paddingBottom={1}>{text}</Typography>
-            <Typography
-                paddingTop={1}
-                sx={{
-                    color: timeColor,
-                    marginLeft: 'auto',
-                    fontSize: '0.8rem',
-                    bottom: 0,
-                }}
-            >
-                {sent.getHours().toString().padStart(2, '0')}:
-                {sent.getMinutes().toString().padStart(2, '0')}
+            <Typography className={classes.sent}>
+                {getFormatedTime(sent)}
             </Typography>
         </Stack>
     );

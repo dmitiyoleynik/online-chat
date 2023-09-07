@@ -5,9 +5,9 @@ import { makeStyles } from 'tss-react/mui';
 
 const getStyles = makeStyles()(theme => {
     return {
-        root: {
-            borderRadius: 320,
-            padding: 8,
+        search: {
+            borderRadius: theme.spacing(3),
+            padding: theme.spacing(1),
             backgroundColor: theme.palette.primary.light,
         },
     };
@@ -15,10 +15,11 @@ const getStyles = makeStyles()(theme => {
 
 const Search: React.FC = () => {
     const { classes } = getStyles();
+
     return (
         <TextField
             fullWidth
-            className={classes.root}
+            className={classes.search}
             placeholder="Search"
             size="small"
             variant="standard"
