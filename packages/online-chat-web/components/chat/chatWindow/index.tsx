@@ -42,7 +42,7 @@ const useCss = makeStyles()(theme => {
 });
 
 const defaultChat = {
-    userName: 'Youryi',
+    userName: 'Bob Johnson',
     isOnline: true,
     lastSeen: new Date(),
 };
@@ -251,7 +251,7 @@ const ChatWindow: React.FC<Chat> = ({ messages }) => {
     const theme = useTheme();
     return (
         messages && (
-            <Stack flex={1} sx={{ background: theme.palette.grey[900] }}>
+            <Stack flex={1} sx={{ background: theme.palette.primary.dark }}>
                 <Header {...defaultChat} />
                 <Stack
                     direction={'column-reverse'}

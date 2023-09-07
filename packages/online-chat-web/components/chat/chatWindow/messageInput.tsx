@@ -6,7 +6,7 @@ const getStyles = makeStyles()(theme => {
         root: {
             borderRadius: theme.spacing(2),
             padding: theme.spacing(1.5),
-            backgroundColor: '#2E2B2B',
+            backgroundColor: theme.palette.primary.main,
             width: '40%',
             alignSelf: 'center',
             marginBottom: theme.spacing(2),

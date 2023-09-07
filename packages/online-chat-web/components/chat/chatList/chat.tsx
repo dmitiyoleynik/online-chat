@@ -13,20 +13,32 @@ interface Chat {
     unreadNumber: number;
     companionName: string;
     lastMessage: Message;
+    isSelected: boolean;
 }
-const useCss = makeStyles()(theme => {
-    return {
+
+const useCss = makeStyles<{ isSelected: boolean }>()(
+    (theme, { isSelected }) => ({
         chat: {
             borderRadius: theme.spacing(2),
             padding: theme.spacing(1),
+            backgroundColor: isSelected
+                ? theme.palette.secondary.main
+                : theme.palette.primary.main,
             '&:hover': {
-                backgroundColor: theme.palette.grey[800],
+                backgroundColor: isSelected
+                    ? theme.palette.secondary.main
+                    : theme.palette.primary.light,
             },
         },
-    };
-});
-const Chat: React.FC<Chat> = ({ companionName, lastMessage, unreadNumber }) => {
-    const { classes } = useCss();
+    }),
+);
+const Chat: React.FC<Chat> = ({
+    companionName,
+    lastMessage,
+    unreadNumber,
+    isSelected,
+}) => {
+    const { classes } = useCss({ isSelected });
     return (
         <Stack
             direction={'row'}
@@ -39,8 +51,15 @@ const Chat: React.FC<Chat> = ({ companionName, lastMessage, unreadNumber }) => {
                 <Stack direction={'row'} justifyContent={'space-between'}>
                     <span>{companionName}</span>
                     <span>
-                        {lastMessage.sent.getHours()}:
-                        {lastMessage.sent.getMinutes()}
+                        {lastMessage.sent
+                            .getHours()
+                            .toString()
+                            .padStart(2, '0')}
+                        :
+                        {lastMessage.sent
+                            .getMinutes()
+                            .toString()
+                            .padStart(2, '0')}
                     </span>
                 </Stack>
                 <Stack
@@ -67,6 +86,7 @@ const Chat: React.FC<Chat> = ({ companionName, lastMessage, unreadNumber }) => {
 const mockChats: Chat[] = [
     {
         id: '1',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'John Doe',
         lastMessage: {
@@ -78,6 +98,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '2',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Alice Smith',
         lastMessage: {
@@ -89,7 +110,8 @@ const mockChats: Chat[] = [
     },
     {
         id: '3',
-        unreadNumber: 1,
+        isSelected: true,
+        unreadNumber: 0,
         companionName: 'Bob Johnson',
         lastMessage: {
             sender: 'companion',
@@ -101,6 +123,7 @@ const mockChats: Chat[] = [
     // Додайте інші чати за аналогічною схемою
     {
         id: '4',
+        isSelected: false,
         unreadNumber: 3,
         companionName: 'Eve Anderson',
         lastMessage: {
@@ -112,6 +135,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '5',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Charlie Brown',
         lastMessage: {
@@ -123,6 +147,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '6',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Grace Davis',
         lastMessage: {
@@ -134,6 +159,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '7',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Oliver Lee',
         lastMessage: {
@@ -145,6 +171,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '8',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Emma White',
         lastMessage: {
@@ -157,6 +184,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '1',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'John Doe',
         lastMessage: {
@@ -168,6 +196,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '2',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Alice Smith',
         lastMessage: {
@@ -179,6 +208,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '3',
+        isSelected: false,
         unreadNumber: 1,
         companionName: 'Bob Johnson',
         lastMessage: {
@@ -191,6 +221,7 @@ const mockChats: Chat[] = [
     // Додайте інші чати за аналогічною схемою
     {
         id: '4',
+        isSelected: false,
         unreadNumber: 3,
         companionName: 'Eve Anderson',
         lastMessage: {
@@ -202,6 +233,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '5',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Charlie Brown',
         lastMessage: {
@@ -213,6 +245,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '6',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Grace Davis',
         lastMessage: {
@@ -224,6 +257,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '7',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Oliver Lee',
         lastMessage: {
@@ -235,6 +269,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '8',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Emma White',
         lastMessage: {
@@ -247,6 +282,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '1',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'John Doe',
         lastMessage: {
@@ -258,6 +294,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '2',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Alice Smith',
         lastMessage: {
@@ -269,6 +306,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '3',
+        isSelected: false,
         unreadNumber: 1,
         companionName: 'Bob Johnson',
         lastMessage: {
@@ -281,6 +319,7 @@ const mockChats: Chat[] = [
     // Додайте інші чати за аналогічною схемою
     {
         id: '4',
+        isSelected: false,
         unreadNumber: 3,
         companionName: 'Eve Anderson',
         lastMessage: {
@@ -292,6 +331,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '5',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Charlie Brown',
         lastMessage: {
@@ -303,6 +343,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '6',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Grace Davis',
         lastMessage: {
@@ -314,6 +355,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '7',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Oliver Lee',
         lastMessage: {
@@ -325,6 +367,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '8',
+        isSelected: false,
         unreadNumber: 2,
         companionName: 'Emma White',
         lastMessage: {
@@ -337,6 +380,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '9',
+        isSelected: false,
         unreadNumber: 1,
         companionName: 'Liam Harris',
         lastMessage: {
@@ -348,6 +392,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '10',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Ava Martin',
         lastMessage: {
@@ -360,6 +405,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '11',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Sarah Wilson',
         lastMessage: {
@@ -371,6 +417,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '12',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Michael Jones',
         lastMessage: {
@@ -382,6 +429,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '13',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Emily Davis',
         lastMessage: {
@@ -393,6 +441,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '14',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Daniel Smith',
         lastMessage: {
@@ -404,6 +453,7 @@ const mockChats: Chat[] = [
     },
     {
         id: '15',
+        isSelected: false,
         unreadNumber: 0,
         companionName: 'Olivia Johnson',
         lastMessage: {

@@ -30,9 +30,7 @@ export const ColorModeContext = React.createContext({
     toggleColorMode: () => {},
 });
 
-export const MUIProvider: React.FC<{ children: ReactNode }> = ({
-    children,
-}) => {
+const MUIProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [mode, setMode] = React.useState<'light' | 'dark'>('dark');
 
     const theme = React.useMemo(

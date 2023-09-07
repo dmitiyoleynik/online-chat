@@ -10,8 +10,8 @@ interface IMessage {
 const Message: React.FC<IMessage> = ({ text, isSendByUser, sent }) => {
     const theme = useTheme();
     const messageColor = isSendByUser
-        ? theme.palette.primary.dark
-        : theme.palette.grey[700];
+        ? theme.palette.secondary.main
+        : theme.palette.primary.light;
     const timeColor = isSendByUser
         ? theme.palette.grey[300]
         : theme.palette.text.primary;
@@ -22,7 +22,7 @@ const Message: React.FC<IMessage> = ({ text, isSendByUser, sent }) => {
             gap={1}
             sx={{
                 backgroundColor: messageColor,
-                borderRadius: theme.spacing(2),
+                borderRadius: theme.spacing(1),
                 paddingLeft: theme.spacing(1),
                 paddingRight: theme.spacing(1),
                 paddingTop: theme.spacing(1),

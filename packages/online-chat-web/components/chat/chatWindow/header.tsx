@@ -1,4 +1,4 @@
-import { Avatar, Stack, Typography } from '@mui/material';
+import { Avatar, Stack, Typography, useTheme } from '@mui/material';
 interface Chat {
     userName: string;
     isOnline: boolean;
@@ -6,8 +6,12 @@ interface Chat {
 }
 
 const Header: React.FC<Chat> = ({ userName, isOnline, lastSeen }) => {
+    const theme = useTheme();
     return (
-        <Stack direction={'row'} sx={{ background: '#2E2B2B' }}>
+        <Stack
+            direction={'row'}
+            sx={{ background: theme.palette.primary.main }}
+        >
             <Avatar
                 sx={{
                     width: 54,

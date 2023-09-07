@@ -4,8 +4,7 @@ import { Inter } from 'next/font/google';
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
 
 import './globals.css';
-
-import { MUIProvider } from '@/components/theme';
+import MUIProvider from '@/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 

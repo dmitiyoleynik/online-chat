@@ -19,7 +19,7 @@ const useCss = makeStyles()(theme => {
             },
 
             '&::-webkit-scrollbar-thumb': {
-                backgroundColor: theme.palette.grey[900],
+                backgroundColor: theme.palette.primary.light,
                 borderRadius: '20px',
                 height: '50px',
             },

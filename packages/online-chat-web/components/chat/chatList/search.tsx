@@ -8,7 +8,7 @@ const getStyles = makeStyles()(theme => {
         root: {
             borderRadius: 320,
             padding: 8,
-            backgroundColor: theme.palette.grey[900],
+            backgroundColor: theme.palette.primary.light,
         },
     };
 });
