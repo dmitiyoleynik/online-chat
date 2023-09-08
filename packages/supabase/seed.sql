@@ -23,12 +23,34 @@ values
         '{}',
         timezone('utc' :: text, now()),
         timezone('utc' :: text, now())
+    ),
+    (
+        '00000000-0000-0000-0000-000000000000',
+        '61fddb5a-4371-46a8-8792-75e057e97af9',
+        'authenticated',
+        'authenticated',
+        'illidanstormrage@gmail.com',
+        '$2a$10$ZeOfvuSHw3nClKiG6qSm2OiBGsgjKlyilvxPTe7ecLHGejzWJ9VBy',
+        '{"provider":"email","providers":["email"]}',
+        '{}',
+        timezone('utc' :: text, now()),
+        timezone('utc' :: text, now())
     );
+
+;
 
 update
     public.users
 set
     username = 'dragonbornmiraak',
-    fullName = 'Miraak'
+    fullName = 'Мірак'
 where
-    id = '2b6c0a93-f71b-4f2c-9ff7-56c7e649b92e'
+    id = '2b6c0a93-f71b-4f2c-9ff7-56c7e649b92e';
+
+update
+    public.users
+set
+    username = 'illidanstormrage',
+    fullName = 'Ілідан Яростьч Бурі'
+where
+    id = '61fddb5a-4371-46a8-8792-75e057e97af9';
