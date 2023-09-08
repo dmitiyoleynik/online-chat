@@ -51,6 +51,6 @@ update
     public.users
 set
     username = 'illidanstormrage',
-    fullName = 'Ілідан Яростьч Бурі'
+    fullName = 'Ілідан Ярость Бурі'
 where
     id = '61fddb5a-4371-46a8-8792-75e057e97af9';
