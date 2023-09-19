@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Button, TextField, useTheme, InputAdornment } from '@mui/material';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';

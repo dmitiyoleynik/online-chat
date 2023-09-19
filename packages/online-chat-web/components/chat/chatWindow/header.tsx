@@ -23,20 +23,20 @@ const useCss = makeStyles()(theme => ({
 }));
 
 interface HeaderProps {
-    userName: string;
+    chatName: string;
     isOnline: boolean;
     lastSeen: Date;
 }
 
-const Header: React.FC<HeaderProps> = ({ userName, isOnline, lastSeen }) => {
+const Header: React.FC<HeaderProps> = ({ chatName, isOnline, lastSeen }) => {
     const { classes } = useCss();
 
     return (
         <Stack className={classes.header}>
-            <Avatar className={classes.avatar}>{userName[0]}</Avatar>
+            <Avatar className={classes.avatar}>{chatName[0]}</Avatar>
             <Stack className={classes.companionInfo}>
                 <Typography className={classes.companion} variant="h6">
-                    {userName}
+                    {chatName}
                 </Typography>
                 <Typography className={classes.status}>
                     {isOnline ? 'online' : lastSeen.getDay()}

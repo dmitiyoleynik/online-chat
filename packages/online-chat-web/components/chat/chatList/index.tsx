@@ -1,10 +1,11 @@
+'use client';
+
 import { Stack } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
-
 import Search from '@/components/chat/chatList/search';
 import Menu from '@/components/chat/chatList/menu';
 import Chat from '@/components/chat/chatList/chat';
-import { mockedChats } from '@/mocks';
+import { ChatShortInfo } from '@/mocks';
 
 const useCss = makeStyles()(theme => {
     return {
@@ -42,7 +43,11 @@ const useCss = makeStyles()(theme => {
     };
 });
 
-const ChatList: React.FC = () => {
+interface ChatListProps {
+    chats: ChatShortInfo[];
+}
+
+const ChatList: React.FC<ChatListProps> = ({ chats }) => {
     const { classes } = useCss();
 
     return (
@@ -52,7 +57,7 @@ const ChatList: React.FC = () => {
                 <Search />
             </Stack>
             <Stack className={classes.body}>
-                {mockedChats.map(chat => (
+                {chats.map(chat => (
                     <Chat key={chat.id} {...chat}></Chat>
                 ))}
             </Stack>

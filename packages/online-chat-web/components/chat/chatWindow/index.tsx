@@ -1,10 +1,11 @@
+'use client';
+
 import { Stack } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
-
 import MessageInput from './messageInput';
 import Header from './header';
 import Message from './message';
-import { chatHistory, defaultChat } from '@/mocks';
+import { MessageInfo } from '@/mocks';
 
 const useCss = makeStyles()(theme => {
     return {
@@ -50,22 +51,33 @@ const useCss = makeStyles()(theme => {
         },
     };
 });
-
-const ChatWindow: React.FC<{ messages: string[] | null }> = ({ messages }) => {
+interface ChatWindowProps {
+    chatHistory: MessageInfo[];
+    chatInfo: {
+        chatName: string;
+        isOnline: boolean;
+        lastSeen: Date;
+        showChat: boolean;
+    };
+}
+const ChatWindow: React.FC<ChatWindowProps> = ({ chatHistory, chatInfo }) => {
     const { classes } = useCss();
+    console.log({ chatHistory });
 
     return (
-        messages && (
-            <Stack className={classes.chatWindow}>
-                <Header {...defaultChat} />
-                <Stack className={classes.chatMessages}>
-                    {chatHistory.map((message, index) => (
-                        <Message {...message} key={index} />
-                    ))}
-                </Stack>
-                <MessageInput />
-            </Stack>
-        )
+        <Stack className={classes.chatWindow}>
+            {chatInfo.showChat && (
+                <>
+                    <Header {...chatInfo} />
+                    <Stack className={classes.chatMessages}>
+                        {chatHistory.map((message, index) => (
+                            <Message {...message} key={index} />
+                        ))}
+                    </Stack>
+                    <MessageInput />
+                </>
+            )}
+        </Stack>
     );
 };
 

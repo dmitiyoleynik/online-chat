@@ -2,6 +2,7 @@ import { Stack, Typography } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 
 import { getFormatedTime } from '@/utils';
+import { MessageInfo } from '@/mocks';
 
 const useCss = makeStyles<{ isSendByUser: boolean }>()((
     theme,
@@ -36,12 +37,7 @@ const useCss = makeStyles<{ isSendByUser: boolean }>()((
     };
 });
 
-interface MessageProps {
-    text: string;
-    isSendByUser: boolean;
-    isRead: boolean;
-    sent: Date;
-}
+interface MessageProps extends MessageInfo {}
 
 const Message: React.FC<MessageProps> = ({ text, isSendByUser, sent }) => {
     const { classes } = useCss({ isSendByUser });

@@ -1,8 +1,8 @@
 import { makeStyles } from 'tss-react/mui';
 import { Avatar, Chip, Stack, Typography } from '@mui/material';
 
-import type { Chat } from '@/mocks';
 import { getFormatedTime } from '@/utils';
+import { ChatShortInfo } from '@/mocks';
 
 const useCss = makeStyles<{ isSelected: boolean }>()(
     (theme, { isSelected }) => ({
@@ -50,15 +50,19 @@ const useCss = makeStyles<{ isSelected: boolean }>()(
     }),
 );
 
-const Chat: React.FC<Chat> = ({
+interface Props extends ChatShortInfo {}
+
+const Chat: React.FC<Props> = ({
     companionName,
     lastMessage,
     unreadNumber,
     isSelected,
+    onClick,
 }) => {
     const { classes } = useCss({ isSelected });
+
     return (
-        <Stack className={classes.chat}>
+        <Stack className={classes.chat} onClick={onClick}>
             <Avatar className={classes.avatar}>{companionName[0]}</Avatar>
             <Stack className={classes.lastMessageInfo}>
                 <Stack className={classes.senderContainer}>
