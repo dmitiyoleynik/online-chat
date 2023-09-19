@@ -5,6 +5,5 @@
         "start":"supabase start",
         "stop":"supabase stop",
         "reset":"supabase db reset"
-
     }
 }
